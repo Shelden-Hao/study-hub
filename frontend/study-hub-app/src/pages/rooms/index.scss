@@ -83,6 +83,22 @@
   font-weight: bold;
 }
 
+.room-occupancy {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+.occupied-seats {
+  color: #f5222d;
+}
+
+.available-seats {
+  color: #52c41a;
+}
+
 .room-description {
   font-size: 13px;
   color: #888;

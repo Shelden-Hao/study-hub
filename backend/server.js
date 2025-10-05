@@ -18,11 +18,19 @@ const userRoutes = require('./routes/users');
 const roomRoutes = require('./routes/rooms');
 const seatRoutes = require('./routes/seats');
 const reservationRoutes = require('./routes/reservations');
+const checkInRoutes = require('./routes/checkIns');
+const feedbackRoutes = require('./routes/feedbacks');
+const statisticsRoutes = require('./routes/statistics');
+const violationRoutes = require('./routes/violations');
 
 app.use('/api/users', userRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/seats', seatRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/checkins', checkInRoutes);
+app.use('/api/feedbacks', feedbackRoutes);
+app.use('/api/statistics', statisticsRoutes);
+app.use('/api/violations', violationRoutes);
 
 // 数据库连接
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/study-hub')

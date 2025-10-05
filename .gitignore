@@ -46,6 +46,7 @@ yarn.lock
 .project
 .classpath
 .settings/
+.history/
 
 # 日志文件
 logs/

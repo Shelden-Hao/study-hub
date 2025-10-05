@@ -90,6 +90,34 @@ export default function User() {
         </View>
       </View>
 
+      <Button className='feedback-button' onClick={() => Taro.navigateTo({ url: '/pages/user/feedback/index' })}>
+        提交反馈
+      </Button>
+
+      <Button className='feedback-list-button' onClick={() => Taro.navigateTo({ url: '/pages/user/feedback/feedback-list' })}>
+        查看我的反馈
+      </Button>
+
+      <Button className='statistics-button' onClick={() => Taro.navigateTo({ url: '/pages/user/statistics/index' })}>
+        学习统计
+      </Button>
+
+      <Button className='violations-button' onClick={() => Taro.navigateTo({ url: '/pages/user/violations/index' })}>
+        违规记录
+      </Button>
+
+      {userInfo.role === 'admin' && (
+        <Button className='room-management-button' onClick={() => Taro.navigateTo({ url: '/pages/rooms/room-management' })}>
+          房间管理
+        </Button>
+      )}
+
+      {userInfo.role === 'admin' && (
+        <Button className='user-management-button' onClick={() => Taro.navigateTo({ url: '/pages/user/user-management/index' })}>
+          用户管理
+        </Button>
+      )}
+
       <Button className='logout-button' onClick={handleLogout}>
         退出登录
       </Button>

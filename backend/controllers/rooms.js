@@ -1,5 +1,6 @@
 const Room = require('../models/Room');
 const Seat = require('../models/Seat');
+const Reservation = require('../models/Reservation');
 
 // @desc    获取所有自习室
 // @route   GET /api/rooms
@@ -7,7 +8,25 @@ const Seat = require('../models/Seat');
 exports.getRooms = async (req, res) => {
   try {
     const rooms = await Room.find();
-    res.status(200).json({ success: true, count: rooms.length, data: rooms });
+
+    const roomsWithStatus = await Promise.all(rooms.map(async (room) => {
+      const totalSeats = await Seat.countDocuments({ room: room._id });
+      const occupiedSeats = await Reservation.countDocuments({
+        room: room._id,
+        status: { $in: ['confirmed', 'checked-in'] },
+        endTime: { $gt: new Date() } // 仅计算当前时间之后结束的预约
+      });
+      const availableSeats = totalSeats - occupiedSeats;
+
+      return {
+        ...room.toObject(),
+        totalSeats,
+        occupiedSeats,
+        availableSeats
+      };
+    }));
+
+    res.status(200).json({ success: true, count: roomsWithStatus.length, data: roomsWithStatus });
   } catch (err) {
     res.status(500).json({ success: false, message: '服务器错误', error: err.message });
   }
@@ -23,8 +42,23 @@ exports.getRoom = async (req, res) => {
     if (!room) {
       return res.status(404).json({ success: false, message: '未找到自习室' });
     }
+
+    const totalSeats = await Seat.countDocuments({ room: room._id });
+    const occupiedSeats = await Reservation.countDocuments({
+      room: room._id,
+      status: { $in: ['confirmed', 'checked-in'] },
+      endTime: { $gt: new Date() } // 仅计算当前时间之后结束的预约
+    });
+    const availableSeats = totalSeats - occupiedSeats;
+
+    const roomWithStatus = {
+      ...room.toObject(),
+      totalSeats,
+      occupiedSeats,
+      availableSeats
+    };
     
-    res.status(200).json({ success: true, data: room });
+    res.status(200).json({ success: true, data: roomWithStatus });
   } catch (err) {
     res.status(500).json({ success: false, message: '服务器错误', error: err.message });
   }

@@ -4,9 +4,15 @@ export default defineAppConfig({
     'pages/login/index',
     'pages/register/index',
     'pages/rooms/index',
+    'pages/rooms/room-management',
     'pages/room-detail/index',
     'pages/reservations/index',
-    'pages/user/index'
+    'pages/user/index',
+    'pages/user/feedback/index',
+    'pages/user/feedback/feedback-list',
+    'pages/user/statistics/index',
+    'pages/user/violations/index',
+    'pages/user/user-management/index'
   ],
   window: {
     backgroundTextStyle: 'light',

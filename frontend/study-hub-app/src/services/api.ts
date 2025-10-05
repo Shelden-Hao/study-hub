@@ -13,6 +13,12 @@ const request = async (url: string, method: any, data?: any, token?: string) => 
     header['Authorization'] = `Bearer ${token}`;
   }
 
+  // 对于 DELETE 请求且没有数据体时，不发送 Content-Type 和 data
+  if (method === 'DELETE' && (data === null || typeof data === 'undefined')) {
+    delete header['Content-Type'];
+    data = undefined; // 确保不发送数据体
+  }
+
   try {
     const response = await Taro.request({
       url: `${BASE_URL}${url}`,
@@ -96,5 +102,53 @@ export const reservationApi = {
   // 取消预约
   cancelReservation: (reservationId: string, token: string) => {
     return request(`/reservations/${reservationId}`, 'DELETE', null, token);
+  }
+};
+// 反馈相关API
+export const feedbackApi = {
+  // 提交反馈
+  submitFeedback: (feedbackData: any, token: string) => {
+    return request('/feedbacks', 'POST', feedbackData, token);
+  },
+
+  // 获取用户反馈列表
+  getUserFeedback: (token: string) => {
+    return request('/feedbacks/my', 'GET', null, token);
+  },
+
+  // 获取所有反馈（管理员）
+  getAllFeedback: (token: string) => {
+    return request('/feedbacks', 'GET', null, token);
+  }
+};
+
+// 统计相关API
+export const statisticsApi = {
+  // 获取用户学习统计
+  getUserStatistics: (token: string) => {
+    return request('/statistics/my', 'GET', null, token);
+  },
+
+  // 获取系统统计（管理员）
+  getSystemStatistics: (token: string) => {
+    return request('/statistics/system', 'GET', null, token);
+  }
+};
+
+// 违规记录相关API
+export const violationApi = {
+  // 获取用户违规记录
+  getUserViolations: (token: string) => {
+    return request('/violations/my', 'GET', null, token);
+  },
+
+  // 获取所有违规记录（管理员）
+  getAllViolations: (token: string) => {
+    return request('/violations', 'GET', null, token);
+  },
+
+  // 创建违规记录（管理员）
+  createViolation: (violationData: any, token: string) => {
+    return request('/violations', 'POST', violationData, token);
   }
 };

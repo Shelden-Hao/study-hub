@@ -161,9 +161,62 @@
   font-size: 16px;
 }
 
+.check-in-out-section {
+  .reservation-info {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border-radius: 5px;
+    border: 1px solid #91d5ff;
+    font-size: 14px;
+    color: #333;
+
+    text {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  .check-in-button,
+  .check-out-button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .check-in-button {
+    background-color: #52c41a;
+  }
+
+  .check-out-button {
+    background-color: #f5222d;
+  }
+}
+
 .loading, .error, .empty {
   text-align: center;
   padding: 40px 0;
   color: #999;
   font-size: 14px;
+}
+
+.loading-container,
+.empty-room-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.loading-text,
+.empty-text {
+  font-size: 16px;
+  color: #666;
 }

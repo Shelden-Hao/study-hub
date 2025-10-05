@@ -83,8 +83,12 @@ export default function Rooms() {
                     <Text className='room-capacity'>容量: {room.capacity}座</Text>
                     <Text className='room-time'>开放时间: {room.openTime}-{room.closeTime}</Text>
                   </View>
-                  <Text className='room-status' style={{ color: room.status === 'open' ? '#52c41a' : '#f5222d' }}>
-                    {room.status === 'open' ? '开放中' : '已关闭'}
+                  <View className='room-occupancy'>
+                    <Text className='occupied-seats'>已占用: {room.occupiedSeats}</Text>
+                    <Text className='available-seats'>可用: {room.availableSeats}</Text>
+                  </View>
+                  <Text className='room-status' style={{ color: room.availableSeats > 0 ? '#52c41a' : '#f5222d' }}>
+                    {room.availableSeats > 0 ? '有空位' : '已满'}
                   </Text>
                   {room.description && (
                     <Text className='room-description'>{room.description}</Text>
