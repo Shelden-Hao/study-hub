@@ -31,7 +31,18 @@ npm install
 npm start
 ```
 
-后端服务将在 http://localhost:5000 运行
+后端服务将在 http://localhost:5000 运行。
+
+然后执行 `backend/test-features.js` 脚本文件，初始化数据库数据。
+
+```bash
+node test-features.js
+```
+
+等前端启动之后就可以使用初始化登录账户进行登录：
+
+- 账号：TEST001
+- 密码：password123
 
 ### 前端启动
 
