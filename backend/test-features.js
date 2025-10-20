@@ -22,37 +22,34 @@ async function createTestData() {
     console.log('开始创建测试数据...');
 
     // 创建测试用户
-    const testUser = await User.findOne({ username: 'testuser' }) || await User.create({
-      username: 'testuser',
-      email: 'test@example.com',
-      password: 'password123',
-      studentId: 'TEST001',
-      role: 'student',
+    const testUser = await User.findOne({ studentId: 'TEST001' }) || await User.create({
       name: '测试用户',
-      phone: '13800138000'
+      studentId: 'TEST001',
+      password: 'password123',
+      phone: '13800138000',
+      role: 'user'
     });
 
-    console.log('✅ 测试用户创建成功:', testUser.username);
+    console.log('✅ 测试用户创建成功:', testUser.name);
 
     // 创建测试自习室和座位
     let testRoom = await Room.findOne({ name: '测试自习室A' });
     if (!testRoom) {
       testRoom = await Room.create({
         name: '测试自习室A',
+        location: '图书馆1楼',
         capacity: 50,
         description: '安静的学习环境',
-        facilities: ['WiFi', '空调', '插座'],
         openTime: '08:00',
         closeTime: '22:00'
       });
     }
 
-    let testSeat = await Seat.findOne({ room: testRoom._id, number: 'A001' });
+    let testSeat = await Seat.findOne({ room: testRoom._id, seatNumber: 'A001' });
     if (!testSeat) {
       testSeat = await Seat.create({
         room: testRoom._id,
-        number: 'A001',
-        type: 'standard',
+        seatNumber: 'A001',
         status: 'available'
       });
     }
