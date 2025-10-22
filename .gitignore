@@ -1,0 +1,77 @@
+# 依赖包
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# 环境变量
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 编译输出
+/dist/
+/build/
+/out/
+/.next/
+/.nuxt/
+/.vuepress/dist
+.DS_Store
+
+# 前端特定
+# Taro
+.temp/
+.rn_temp/
+.swc/
+.taro-native-temp/
+.taro_page_cache/
+.taro_router_cache/
+
+# 后端特定
+/coverage/
+/.nyc_output/
+
+# 编辑器和IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+.history/
+
+# 日志文件
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# 数据库文件
+*.sqlite
+*.sqlite3
+*.db
+
+# 其他
+.vercel
+.netlify
