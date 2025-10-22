@@ -106,7 +106,7 @@ study-hub/
 
 ### 环境变量
 
-后端需要以下环境变量：
-- `MONGO_URI`：MongoDB连接字符串
+后端需要根据自身配置修改以下环境变量：
+- `MONGO_URI`：MongoDB连接字符串（修改为本地MongoDB连接账户密码）
 - `JWT_SECRET`：JWT密钥
 - `PORT`：服务器端口（默认5000）
