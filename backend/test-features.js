@@ -12,8 +12,19 @@ const Reservation = require('./models/Reservation');
 const Room = require('./models/Room');
 const Seat = require('./models/Seat');
 
+// 数据库连接配置
+const mongooseOptions = {
+  autoIndex: true,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  family: 4,
+  maxPoolSize: 10,
+  minPoolSize: 2,
+  maxIdleTimeMS: 30000
+};
+
 // 连接数据库
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/study-hub')
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/study-hub', mongooseOptions)
   .then(() => console.log('MongoDB连接成功'))
   .catch(err => console.error('MongoDB连接失败:', err));
 

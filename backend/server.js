@@ -46,8 +46,6 @@ app.use('/api/violations', violationRoutes);
 
 // 数据库连接配置
 const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   autoIndex: true,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
