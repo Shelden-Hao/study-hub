@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { roomApi } from '../../services/api'
 import './index.scss'
 
@@ -10,8 +10,12 @@ export default function Rooms() {
 
   useEffect(() => {
     checkLogin()
-    fetchRooms()
   }, [])
+
+  // 每次页面显示时刷新数据
+  useDidShow(() => {
+    fetchRooms()
+  })
 
   // 检查登录状态
   const checkLogin = () => {
